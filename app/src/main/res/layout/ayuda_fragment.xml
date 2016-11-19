@@ -1,0 +1,70 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="unex.es.extravelapp.AyudaFragment">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/ayuda"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="383dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize"
+            android:id="@+id/toolbar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:text="Ayuda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewAyuda"
+            app:layout_constraintLeft_toLeftOf="@+id/toolbar"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="@+id/toolbar"
+            app:layout_constraintRight_toRightOf="@+id/toolbar"
+            android:textSize="24sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:text="Detalles App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewAyudaDetalles"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textViewAyudaDetalles2"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintVertical_bias="0.16000003"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="La finalidad de nuestra oferta es ofrecerle la información necesaria para planificar de manera más sencilla y mejor su viaje por Europa y comparar las opciones de viaje que le mostramos en cada caso. La finalidad de nuestra oferta es ofrecerle la información necesaria para planificar de manera más sencilla y mejor su viaje por Europa y comparar las opciones de viaje que le mostramos en cada caso. La finalidad de nuestra oferta es ofrecerle la información necesaria para planificar de manera más sencilla y mejor su viaje por Europa y comparar las opciones de viaje que le mostramos en cada caso."
+            android:layout_width="wrap_content"
+            android:layout_height="358dp"
+            android:id="@+id/textViewAyudaDetalles2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:padding="15dp" />
+
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>
