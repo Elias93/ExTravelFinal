@@ -49,7 +49,7 @@ public class FavoritosFragment extends Fragment {
         try (Cursor cur = dbhelper.getCursorViaje()){
             while(cur.moveToNext()){
                 Viaje v = new Viaje(cur.getString(0),cur.getString(1),cur.getString(2)
-                        ,cur.getString(3),cur.getString(4),cur.getString(5));
+                        ,cur.getString(3),cur.getString(4),cur.getString(5),cur.getString(6),cur.getString(7));
                 listaViajes.add(v);
                 cont++;
             }
@@ -66,55 +66,41 @@ public class FavoritosFragment extends Fragment {
         }else{
             int i=0;
             while (i<listaViajes.size()) {
-                //Button butBorrar = new Button(getContext());
-                //butBorrar.setPadding(30, 80, 15, 15);
-                TextView textView = new TextView(getContext());
-                TextView textView2 = new TextView(getContext());
-                TextView textView3 = new TextView(getContext());
-                TextView textView4 = new TextView(getContext());
-                TextView textView5 = new TextView(getContext());
-                TextView textView7 = new TextView(getContext());
-                TableRow row=new TableRow(getContext());
-                TableRow row2=new TableRow(getContext());
-                TableRow row3=new TableRow(getContext());
-                TableRow row4=new TableRow(getContext());
-                TableRow row5=new TableRow(getContext());
-                TableRow row6=new TableRow(getContext());
-                TableRow row7=new TableRow(getContext());
-                //le damos dimenciones al textview
-                //textView.setPadding(5, 5, 5, 5);
-                //agregamos los datos al textview
-                /*textView.setText("Tipo de transporte: "+listaViajes.get(i).getTipoTransporte()
-                        +" - Hora de salida: "+listaViajes.get(i).getHoraSalida()
-                        +" - Hora de llegada: "+listaViajes.get(i).getHoraLlegada()
-                        +" - Precio: "+listaViajes.get(i).getPrecio()
-                        +" - Fecha: "+listaViajes.get(i).getFecha());*/
-                textView.setText("Tipo de transporte: "+listaViajes.get(i).getTipoTransporte());
-                textView2.setText("Hora de salida: "+listaViajes.get(i).getHoraSalida());
-                textView3.setText("Hora de llegada: "+listaViajes.get(i).getHoraLlegada());
-                textView4.setText("Precio: "+listaViajes.get(i).getPrecio());
-                textView5.setText("Fecha: "+listaViajes.get(i).getFecha());
-                //int x=i+1;
-                //butBorrar.setText("Borrar viaje "+x);
+                TextView textViewTipoTransporte = new TextView(getContext());
+                TextView textViewHoraSalidaLlegada = new TextView(getContext());
+                TextView textViewPrecio = new TextView(getContext());
+                TextView textViewFecha = new TextView(getContext());
+                TextView textViewOrigenDestino = new TextView(getContext());
+                TextView textViewEspacioSeparacion = new TextView(getContext());
+
+                TableRow rowTipoTransporte=new TableRow(getContext());
+                TableRow rowHoraSalidaLlegada=new TableRow(getContext());
+                TableRow rowPrecio=new TableRow(getContext());
+                TableRow rowFecha=new TableRow(getContext());
+                TableRow rowOrigenDestino=new TableRow(getContext());
+                TableRow rowEspacioSeparacion=new TableRow(getContext());
+
+                textViewTipoTransporte.setText("Tipo de transporte: "+listaViajes.get(i).getTipoTransporte());
+                textViewHoraSalidaLlegada.setText("Hora salida-llegada: "+listaViajes.get(i).getHoraSalida()+"-"+listaViajes.get(i).getHoraLlegada());
+                textViewPrecio.setText("Precio: "+listaViajes.get(i).getPrecio());
+                textViewFecha.setText("Fecha: "+listaViajes.get(i).getFecha());
+                textViewOrigenDestino.setText("Origen-Destino: "+listaViajes.get(i).getOrigen()+"-"+listaViajes.get(i).getDestino());
 
                 //agregamos el textview al TableRow
-                row.addView(textView);
-                row2.addView(textView2);
-                row3.addView(textView3);
-                row4.addView(textView4);
-                row5.addView(textView5);
-                //row6.addView(butBorrar);
-                row7.addView(textView7);
-
+                rowTipoTransporte.addView(textViewTipoTransporte);
+                rowHoraSalidaLlegada.addView(textViewHoraSalidaLlegada);
+                rowPrecio.addView(textViewPrecio);
+                rowFecha.addView(textViewFecha);
+                rowOrigenDestino.addView(textViewOrigenDestino);
+                rowEspacioSeparacion.addView(textViewEspacioSeparacion);
 
                 //Finalmente agregamos el TableRow al TableLayout
-                tabla.addView(row);
-                tabla.addView(row2);
-                tabla.addView(row3);
-                tabla.addView(row4);
-                tabla.addView(row5);
-                //tabla.addView(row6);
-                tabla.addView(row7);
+                tabla.addView(rowTipoTransporte);
+                tabla.addView(rowHoraSalidaLlegada);
+                tabla.addView(rowPrecio);
+                tabla.addView(rowFecha);
+                tabla.addView(rowOrigenDestino);
+                tabla.addView(rowEspacioSeparacion);
                 i++;
             }
         }

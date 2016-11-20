@@ -45,13 +45,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         DummyContent.ITEMS.get(Integer.parseInt(id) - 1).getHoraSalida(),
                         DummyContent.ITEMS.get(Integer.parseInt(id) - 1).getHoraLlegada(),
                         DummyContent.ITEMS.get(Integer.parseInt(id) - 1).getPrecio(),
-                        DummyContent.ITEMS.get(Integer.parseInt(id) - 1).getFecha());
+                        DummyContent.ITEMS.get(Integer.parseInt(id) - 1).getFecha(),
+                        DummyContent.ITEMS.get(Integer.parseInt(id) - 1).getOrigen(),
+                        DummyContent.ITEMS.get(Integer.parseInt(id) - 1).getDestino());
                 values.put(ViajesTable.COLUMNA_ID, idViaje);
                 values.put(ViajesTable.COLUMNA_TIPO_TRANSPORTE, v.getTipoTransporte());
                 values.put(ViajesTable.COLUMNA_HORA_SALIDA, v.getHoraSalida());
                 values.put(ViajesTable.COLUMNA_HORA_LLEGADA, v.getHoraLlegada());
                 values.put(ViajesTable.COLUMNA_PRECIO, v.getPrecio());
                 values.put(ViajesTable.COLUMNA_FECHA, v.getFecha());
+                values.put(ViajesTable.COLUMNA_ORIGEN, v.getOrigen());
+                values.put(ViajesTable.COLUMNA_DESTINO, v.getDestino());
                 //insert rows
                 this.getWritableDatabase().insert(ViajesTable.TABLA_VIAJES, null, values);
             }
@@ -92,6 +96,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         values.put(ViajesTable.COLUMNA_HORA_LLEGADA, v.getHoraLlegada());
         values.put(ViajesTable.COLUMNA_PRECIO, v.getPrecio());
         values.put(ViajesTable.COLUMNA_FECHA, v.getFecha());
+        values.put(ViajesTable.COLUMNA_ORIGEN, v.getOrigen());
+        values.put(ViajesTable.COLUMNA_DESTINO, v.getDestino());
 
         this.getReadableDatabase().insert(ViajesTable.TABLA_VIAJES, null, values);
         return "Viaje Insertado";

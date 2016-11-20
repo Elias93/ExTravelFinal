@@ -423,14 +423,10 @@ public class MenuLateral extends AppCompatActivity
     //Conectar fragmentos mediante la interfaz --------------------------------------------------------------------------------------
 
     @Override
-    public void responderBusqueda(){
+    public void responderBusqueda(String origen){
         Intent intent = new Intent(getApplicationContext(), ViajeListActivity.class);
+        intent.putExtra("viaje_origen",origen);
         startActivity(intent);
-        //Opcion 1,
-        //Usuario user = new Usuario("nombre", "password");
-        //Comunicar de fragment a fragment
-        //android.app.FragmentManager fragmentManager = getFragmentManager();
-        //BusquedaFragment fragmentBusq = (BusquedaFragment) fragmentManager.findFragmentById(R.id."id del fragmeto");
     }
 
     @Override

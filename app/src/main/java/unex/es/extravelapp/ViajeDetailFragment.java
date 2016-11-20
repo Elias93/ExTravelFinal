@@ -42,6 +42,8 @@ public class ViajeDetailFragment extends Fragment {
             ((TextView) rootView.findViewById(R.id.horaLlegada)).setText(mItem.getHoraLlegada());
             ((TextView) rootView.findViewById(R.id.precio)).setText(mItem.getPrecio());
             ((TextView) rootView.findViewById(R.id.fecha)).setText(mItem.getFecha());
+            ((TextView) rootView.findViewById(R.id.origen)).setText(mItem.getOrigen());
+            ((TextView) rootView.findViewById(R.id.destino)).setText(mItem.getDestino());
         }
         return rootView;
     }

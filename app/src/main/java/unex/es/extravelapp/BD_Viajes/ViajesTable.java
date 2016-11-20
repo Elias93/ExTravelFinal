@@ -18,7 +18,8 @@ public class ViajesTable implements BaseColumns {
     public static final String COLUMNA_HORA_LLEGADA = "horaLlegada";
     public static final String COLUMNA_PRECIO = "precio";
     public static final String COLUMNA_FECHA = "fecha";
-
+    public static final String COLUMNA_ORIGEN = "origen";
+    public static final String COLUMNA_DESTINO = "destino";
 
 
     public static final String CREATE_QUERY = "create table " + TABLA_VIAJES + " (" +
@@ -27,11 +28,11 @@ public class ViajesTable implements BaseColumns {
             COLUMNA_HORA_SALIDA + " TEXT, " +
             COLUMNA_HORA_LLEGADA + " TEXT, " +
             COLUMNA_PRECIO + " TEXT, " +
-            COLUMNA_FECHA + " TEXT)";
+            COLUMNA_FECHA + " TEXT, " +
+            COLUMNA_ORIGEN + " TEXT, " +
+            COLUMNA_DESTINO + " TEXT)";
 
     public static final String DROP_QUERY = "drop table " + TABLA_VIAJES;
     public static final String SElECT_ALL_QUERY = "select * from " + TABLA_VIAJES;
-
-
 
 }
