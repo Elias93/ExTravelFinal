@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="@drawable/img">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
@@ -28,7 +28,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:elevation="8dp"
+                android:visibility="visible"
+                app:titleTextColor="@color/cast_expanded_controller_background_color"
+                app:collapseIcon="?android:attr/homeAsUpIndicator" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -49,7 +53,7 @@
         app:layout_anchor="@+id/viaje_detail_container"
         app:layout_anchorGravity="top|end"
         app:srcCompat="@drawable/favoritos"
-        app:backgroundTint="@android:color/holo_blue_bright"
-        app:rippleColor="?attr/actionModeSplitBackground" />
+        app:rippleColor="?attr/actionModeSplitBackground"
+        app:backgroundTint="@color/colorPrimary" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -13,6 +13,12 @@ import unex.es.extravelapp.dummy.DummyContent;
 
 public class ViajeDetailFragment extends Fragment {
 
+
+    /*
+    * Esta es la clase que se encarga de mostrar en pantalla los datos
+    * detallados del viaje que previamente haya seleccionado el usuario en la lista.
+    */
+
     public static final String ARG_ITEM_ID = "item_id";
     private DummyContent.DummyItem mItem;
     public ViajeDetailFragment() { }

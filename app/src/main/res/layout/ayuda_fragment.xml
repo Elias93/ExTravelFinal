@@ -64,7 +64,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:textIsSelectable="false"
+            android:textAlignment="gravity" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import unex.es.extravelapp.BD_Viajes.DataBaseHelper;
@@ -25,22 +26,21 @@ import java.util.List;
 public class ViajeListActivity extends AppCompatActivity {
 
     private boolean mTwoPane;
+    String latitudOrigen = "";
+    String longitudOrigen = "";
+    String latitudDestino = "";
+    String longitudDestino = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viaje_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("Listado de vehículos");
+        FloatingActionButton volver = (FloatingActionButton) findViewById(R.id.fab);
+        volver.setOnClickListener(new View.OnClickListener() {
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Snackbar.make(view, "Ordenar por...", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
                 Intent intent = new Intent(getApplicationContext(), MenuLateral.class);
                 intent.putExtra("id", "Buscar");
                 startActivity(intent);
@@ -51,6 +51,22 @@ public class ViajeListActivity extends AppCompatActivity {
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
 
+        /*Ver la ruta entre el origen y destino*/
+        FloatingActionButton botonMapa = (FloatingActionButton)findViewById(R.id.botonMap);
+        botonMapa.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+
+                if(!latitudOrigen.equals("") && !longitudOrigen.equals("") && !latitudDestino.equals("") && !longitudDestino.equals("")) {
+                    Intent IntentMapa = new Intent(getApplicationContext(), MapaActivity.class);
+                    IntentMapa.putExtra("viaje_origen_Lat", latitudOrigen);
+                    IntentMapa.putExtra("viaje_origen_Lon", longitudOrigen);
+                    IntentMapa.putExtra("viaje_destino_Lat", latitudDestino);
+                    IntentMapa.putExtra("viaje_destino_Lon", longitudDestino);
+                    startActivity(IntentMapa);
+                }
+            }
+        });
+
         if (findViewById(R.id.viaje_detail_container) != null) {
             // The detail container view will be present only in the large-screen layouts (res/values-w900dp).
             // If this view is present, then the activity should be in two-pane mode.
@@ -59,23 +75,39 @@ public class ViajeListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        //restringir por origen
-        //recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+
+        //Obtenemos el nombre de origen que el usuario indicó
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         String origen = (String) extras.get("viaje_origen");
-        if(!origen.equals("")) {
-            int i = 0;
-            List<DummyContent.DummyItem> ITEMS2 = new ArrayList<DummyContent.DummyItem>();
-            while (i < DummyContent.ITEMS.size()) {
-                if (DummyContent.ITEMS.get(i).getOrigen().equals(origen)) {
-                    ITEMS2.add(DummyContent.ITEMS.get(i));
-                }
-                i++;
+        String destino = (String) extras.get("viaje_destino");
+        int i = 0;
+
+        //Creamos una lista auxiliar para aquellos viajes que cumplan la condición
+        List<DummyContent.DummyItem> VIAJES = new ArrayList<DummyContent.DummyItem>();
+
+        //Relleno la lista de los viajes que cumplan la condicion
+        while (i < DummyContent.ITEMS.size()) {
+            if (DummyContent.ITEMS.get(i).getOrigen().equals(origen) && DummyContent.ITEMS.get(i).getDestino().equals(destino)) {
+                VIAJES.add(DummyContent.ITEMS.get(i));
             }
-            recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(ITEMS2));
-        }else
-            recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+            i++;
+        }
+
+        if(VIAJES.size() == 0){
+            CharSequence text = "No hay viajes";
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(this, text, duration);
+            toast.show();
+
+        //Si al menos hay un viaje, obtenemos sus coordenadas para el mapa
+        }else{
+            latitudOrigen = VIAJES.get(0).getLatitudOrigen();
+            longitudOrigen = VIAJES.get(0).getLongitudOrigen();
+            latitudDestino = VIAJES.get(0).getLatitudDestino();
+            longitudDestino = VIAJES.get(0).getLongitudDestino();
+        }
+            recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(VIAJES));
     }
 
     public class SimpleItemRecyclerViewAdapter
@@ -97,11 +129,11 @@ public class ViajeListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            //holder.mIdView.setText(mValues.get(position).id);
             holder.mContentView.setText(mValues.get(position).getTipoTransporte() + " - " + mValues.get(position).getFecha());
             holder.mContentView2.setText(mValues.get(position).getOrigen() + " - " + mValues.get(position).getDestino());
             holder.mContentView3.setText(mValues.get(position).getHoraSalida() + " - " + mValues.get(position).getHoraLlegada());
             holder.mView.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
@@ -125,6 +157,10 @@ public class ViajeListActivity extends AppCompatActivity {
                         intent.putExtra("viaje_fecha",holder.mItem.getFecha());
                         intent.putExtra("viaje_origen",holder.mItem.getOrigen());
                         intent.putExtra("viaje_destino",holder.mItem.getDestino());
+                        intent.putExtra("viaje_latO",holder.mItem.getLatitudOrigen());
+                        intent.putExtra("viaje_longO",holder.mItem.getLongitudOrigen());
+                        intent.putExtra("viaje_latD",holder.mItem.getLatitudDestino());
+                        intent.putExtra("viaje_longD",holder.mItem.getLongitudDestino());
                         context.startActivity(intent);
                     }
                 }
@@ -138,7 +174,6 @@ public class ViajeListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            //public final TextView mIdView;
             public final TextView mContentView;
             public final TextView mContentView2;
             public final TextView mContentView3;
@@ -147,7 +182,6 @@ public class ViajeListActivity extends AppCompatActivity {
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                //mIdView = (TextView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
                 mContentView2 = (TextView) view.findViewById(R.id.content2);
                 mContentView3 = (TextView) view.findViewById(R.id.content3);

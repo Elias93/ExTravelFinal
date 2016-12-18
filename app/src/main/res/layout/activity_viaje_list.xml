@@ -7,20 +7,6 @@
     android:fitsSystemWindows="true"
     tools:context="unex.es.extravelapp.ViajeListActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
@@ -37,8 +23,34 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_menu_revert"
-        app:backgroundTint="@android:color/holo_blue_bright"
+        app:backgroundTint="@color/colorPrimary"
         app:rippleColor="?attr/colorBackgroundFloating" />
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:layout_height="113dp"
+        android:background="@drawable/plane">
+
+        <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="69dp"
+        android:layout_height="71dp"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_mapmode"
+        android:id="@+id/botonMap"
+        android:layout_gravity="top|right"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        android:layout_marginTop="75dp"
+        android:layout_marginRight="20dp" />
 
 </android.support.design.widget.CoordinatorLayout>

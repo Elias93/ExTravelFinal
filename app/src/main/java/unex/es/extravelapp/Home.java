@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import unex.es.extravelapp.BD_Viajes.DataBaseHelper;
+
 public class Home extends AppCompatActivity {
 
     private Button butActivity_mainIniciarSesion;
@@ -15,6 +17,7 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.home);
         inicializarComponentes();
     }

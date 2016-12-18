@@ -29,27 +29,30 @@ public class FavoritosFragment extends Fragment {
         borrar=(Button) view.findViewById(R.id.borrar);
         dbhelper = new DataBaseHelper(getActivity().getApplication());
         borrarTodosViajes();
-        mostarInformacion();
+        mostrarInformacion();
         return view;
     }
 
     private void borrarTodosViajes(){
         borrar.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 dbhelper.onRestar();
                 tabla.removeAllViews();
-                mostarInformacion();
+                mostrarInformacion();
             }
         });
     }
 
-    private void mostarInformacion(){
+    private void mostrarInformacion(){
         int cont=1;
         try (Cursor cur = dbhelper.getCursorViaje()){
             while(cur.moveToNext()){
                 Viaje v = new Viaje(cur.getString(0),cur.getString(1),cur.getString(2)
-                        ,cur.getString(3),cur.getString(4),cur.getString(5),cur.getString(6),cur.getString(7));
+                        ,cur.getString(3),cur.getString(4),cur.getString(5),cur.getString(6),cur.getString(7)
+                        ,cur.getString(8),cur.getString(9),cur.getString(10),cur.getString(11)
+                        );
                 listaViajes.add(v);
                 cont++;
             }
@@ -59,8 +62,7 @@ public class FavoritosFragment extends Fragment {
         if(listaViajes.isEmpty()){
             TextView textView = new TextView(getContext());
             TableRow row=new TableRow(getContext());
-            textView.setText("Tabla vacia");
-            //agregamos el textview al TableRow
+            textView.setText("Sin viajes guardados");
             row.addView(textView);
             tabla.addView(row);
         }else{
@@ -113,7 +115,7 @@ public class FavoritosFragment extends Fragment {
             public void onClick(View v) {
                 dbhelper.onRestar();
                 tabla.removeAllViews();
-                mostarInformacion();
+                mostrarInformacion();
             }
         });
     }

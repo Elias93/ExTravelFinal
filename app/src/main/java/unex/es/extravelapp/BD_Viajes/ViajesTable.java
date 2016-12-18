@@ -11,6 +11,7 @@ public class ViajesTable implements BaseColumns {
 
     //tabla
     public static final String TABLA_VIAJES = "VIAJES";
+
     //atributos
     public static final String COLUMNA_ID = "id";
     public static final String COLUMNA_TIPO_TRANSPORTE = "tipoTransporte";
@@ -20,6 +21,10 @@ public class ViajesTable implements BaseColumns {
     public static final String COLUMNA_FECHA = "fecha";
     public static final String COLUMNA_ORIGEN = "origen";
     public static final String COLUMNA_DESTINO = "destino";
+    public static final String COLUMNA_LATITUDORIGEN = "latitudOrigen";
+    public static final String COLUMNA_LONGITUDORIGEN = "longitudOrigen";
+    public static final String COLUMNA_LATITUDDESTINO = "latitudDestino";
+    public static final String COLUMNA_LONGITUDDESTINO = "longitudDestino";
 
 
     public static final String CREATE_QUERY = "create table " + TABLA_VIAJES + " (" +
@@ -30,7 +35,12 @@ public class ViajesTable implements BaseColumns {
             COLUMNA_PRECIO + " TEXT, " +
             COLUMNA_FECHA + " TEXT, " +
             COLUMNA_ORIGEN + " TEXT, " +
-            COLUMNA_DESTINO + " TEXT)";
+            COLUMNA_DESTINO + " TEXT," +
+            COLUMNA_LATITUDORIGEN + " TEXT, " +
+            COLUMNA_LONGITUDORIGEN + " TEXT, " +
+            COLUMNA_LATITUDDESTINO + " TEXT, " +
+            COLUMNA_LONGITUDDESTINO + " TEXT) "
+            ;
 
     public static final String DROP_QUERY = "drop table " + TABLA_VIAJES;
     public static final String SElECT_ALL_QUERY = "select * from " + TABLA_VIAJES;

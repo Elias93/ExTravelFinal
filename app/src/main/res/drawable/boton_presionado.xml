@@ -4,14 +4,14 @@
     <!-- Sombra -->
     <item android:top="4dp">
         <shape>
-            <solid android:color="#137e2d" />
+            <solid android:color="#0832a7" />
             <corners android:radius="4dip" />
         </shape>
     </item>
     <!-- Contenido -->
     <item android:bottom="4dp">
         <shape>
-            <solid android:color="#17b83e" />
+            <solid android:color="#0da7c2" />
             <corners android:radius="4dip" />
         </shape>
     </item>

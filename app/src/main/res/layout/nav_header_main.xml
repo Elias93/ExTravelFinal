@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/side_nav_bar"
+    android:background="@drawable/image2"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -11,15 +10,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:layout_height="170dp">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="74dp"
-        android:layout_height="63dp"
+        android:layout_width="65dp"
+        android:layout_height="41dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/tren"
-        android:layout_weight="0.07" />
+        app:srcCompat="@drawable/icon2"
+        android:layout_weight="0.50" />
 
     <TextView
         android:layout_width="match_parent"
@@ -27,12 +27,14 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="ExTravel"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:textColor="@color/cast_intro_overlay_background_color" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="extravel@android.com" />
+        android:text="extravel@android.com"
+        android:textColor="@color/cast_intro_overlay_background_color" />
 
 </LinearLayout>

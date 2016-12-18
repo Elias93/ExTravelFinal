@@ -6,8 +6,8 @@ package unex.es.extravelapp;
 
 public interface Interfaz {
 
-    //Comunicar BusquedaFragment con ViajeListActivity 
-    public void responderBusqueda(String origen);
+    //Comunicar BusquedaFragment con ViajeListActivity
+    public void responderBusqueda(String origen, String destino);
 
     //Añadir un usuario a la BD
     public void responderRegistro(String nombre, String password);

@@ -1,9 +1,11 @@
 package unex.es.extravelapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -32,6 +35,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+
+import unex.es.extravelapp.BD_Viajes.DataBaseHelper;
 
 public class MenuLateral extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Interfaz {
@@ -40,7 +46,6 @@ public class MenuLateral extends AppCompatActivity
     boolean respuestaLogin = false;
     String nombreLogin = "userLogin";
     String passwordLogin = "passwordLogin";
-
 
     //IP de la URL
     String IP = "http://extravel.esy.es";
@@ -55,7 +60,27 @@ public class MenuLateral extends AppCompatActivity
 
     ObtenerWebServices hiloConexion;
 
-    //A esta clase la llamarán los distintos tipos de responder según su id.
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+        //A esta clase la llamarán los distintos tipos de responder según su id.
     public class ObtenerWebServices extends AsyncTask<String, Void, String>{
 
         @Override
@@ -423,9 +448,10 @@ public class MenuLateral extends AppCompatActivity
     //Conectar fragmentos mediante la interfaz --------------------------------------------------------------------------------------
 
     @Override
-    public void responderBusqueda(String origen){
+    public void responderBusqueda(String origen, String destino){
         Intent intent = new Intent(getApplicationContext(), ViajeListActivity.class);
         intent.putExtra("viaje_origen",origen);
+        intent.putExtra("viaje_destino",destino);
         startActivity(intent);
     }
 
@@ -565,7 +591,7 @@ public class MenuLateral extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            finish();
+            onDestroy();
         }
 
         return super.onOptionsItemSelected(item);
@@ -596,7 +622,7 @@ public class MenuLateral extends AppCompatActivity
             fragPerfil.setArguments(paquete);
             fragmentManager.beginTransaction().replace(R.id.content_main, fragPerfil).commit();
 
-        } else if (id == R.id.Favoritos){//&&(respuestaLogin==true)) {
+        } else if ((id == R.id.Favoritos)&&(respuestaLogin==true)) {
             fragmentManager.beginTransaction().replace(R.id.content_main, new FavoritosFragment()).commit();
 
         } else if (id == R.id.Ayuda) {
